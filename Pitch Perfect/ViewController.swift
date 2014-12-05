@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        recordingText.hidden = true
+        stopButton.hidden = true
         // Do any additional setup after loading the view, typically from a nib.
     }
 
