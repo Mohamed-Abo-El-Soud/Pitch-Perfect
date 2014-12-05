@@ -57,12 +57,12 @@
                                 <exclude reference="nDH-x2-hd1"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="GiC-Mw-y9I"/>
-                                <exclude reference="GtT-Pb-Rdt"/>
+                                <exclude reference="0Mr-U8-MpZ"/>
                                 <exclude reference="tES-gN-3D8"/>
                                 <exclude reference="u8w-j7-3UU"/>
                                 <exclude reference="1qa-ID-7tk"/>
-                                <exclude reference="0Mr-U8-MpZ"/>
+                                <exclude reference="GiC-Mw-y9I"/>
+                                <exclude reference="GtT-Pb-Rdt"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -72,12 +72,12 @@
                                 <include reference="nDH-x2-hd1"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="GiC-Mw-y9I"/>
-                                <include reference="GtT-Pb-Rdt"/>
+                                <include reference="0Mr-U8-MpZ"/>
                                 <include reference="tES-gN-3D8"/>
                                 <include reference="u8w-j7-3UU"/>
                                 <include reference="1qa-ID-7tk"/>
-                                <include reference="0Mr-U8-MpZ"/>
+                                <include reference="GiC-Mw-y9I"/>
+                                <include reference="GtT-Pb-Rdt"/>
                             </mask>
                         </variation>
                     </view>
