@@ -15,10 +15,21 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var recordingButton: UIButton!
     var audioRecorder:AVAudioRecorder!
-    var audioRecording:NSURL!
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
-        
+        if(flag){
+            var recordedAudio = RecordedAudio()
+            recordedAudio.filePathUrl = recorder.url
+            recordedAudio.title = recorder.url.lastPathComponent
+            //TODO: perform segue
+            performSegueWithIdentifier("stopRecording", sender: recordedAudio)
+        }
+        else{
+            println("recording was not saved successfully")
+            recordingText.hidden = true
+            recordingButton.enabled = true
+            stopButton.hidden = true
+        }
     }
     
     override func viewDidLoad() {
@@ -32,12 +43,22 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destinationVC = segue.destinationViewController
-            as PlaySoundsViewController
-        destinationVC.extra = audioRecording
-        super.prepareForSegue(segue, sender: sender)
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        var destinationVC = segue.destinationViewController
+//            as PlaySoundsViewController
+//        destinationVC.extra = audioRecording
+//        super.prepareForSegue(segue, sender: sender)
+//    }
+    
+        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            if(segue.identifier == "stopRecording"){
+                let destinationVC:PlaySoundsViewController = segue.destinationViewController
+                    as PlaySoundsViewController
+                let data = sender as RecordedAudio
+                destinationVC.receivedAudio = data
+            }
+        }
+    
     
     override func viewWillAppear(animated: Bool) {
         recordingText.hidden = true
@@ -78,7 +99,6 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         audioRecorder.delegate = self
         audioRecorder.prepareToRecord()
         audioRecorder.record()
-        audioRecording = filePath
     }
 
 }

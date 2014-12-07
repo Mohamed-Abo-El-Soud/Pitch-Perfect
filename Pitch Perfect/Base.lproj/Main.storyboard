@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k4O-qd-zyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k4O-qd-zyx">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -56,7 +56,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onStopping:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="g85-fk-vWd"/>
-                                    <segue destination="FZJ-6n-rD0" kind="show" id="dRt-hn-tjD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -108,6 +107,7 @@
                         <outlet property="recordingButton" destination="wbb-c4-fSN" id="Bab-22-DFo"/>
                         <outlet property="recordingText" destination="7Iz-Ae-KdC" id="C1u-do-CYC"/>
                         <outlet property="stopButton" destination="nDH-x2-hd1" id="Len-BX-fA7"/>
+                        <segue destination="FZJ-6n-rD0" kind="showDetail" identifier="stopRecording" id="KBo-WT-67P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -154,16 +154,38 @@
                                     <action selector="onTop:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PaX-Yx-gbh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nxn-lI-nNl">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="chipmunk">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onChipmunkClick:" destination="FZJ-6n-rD0" eventType="touchUpInside" id="5N6-Wg-pDa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zza-p4-NR7">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="darthVader">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onVaderClick:" destination="FZJ-6n-rD0" eventType="touchUpInside" id="fbn-jw-pO6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="i7n-lH-8ig" firstAttribute="top" secondItem="OfQ-cd-EmL" secondAttribute="bottom" constant="67" id="RHF-1d-2cp"/>
+                            <constraint firstItem="Nxn-lI-nNl" firstAttribute="top" secondItem="Zbl-ul-QDs" secondAttribute="bottom" constant="147" id="bVs-wB-POy"/>
+                            <constraint firstItem="Zza-p4-NR7" firstAttribute="top" secondItem="i7n-lH-8ig" secondAttribute="bottom" constant="147" id="fKl-Ko-NEr"/>
                             <constraint firstItem="Zbl-ul-QDs" firstAttribute="leading" secondItem="RQ9-Ng-239" secondAttribute="leadingMargin" constant="38" id="fuE-0P-2Il"/>
                             <constraint firstItem="Zbl-ul-QDs" firstAttribute="top" secondItem="OfQ-cd-EmL" secondAttribute="bottom" constant="67" id="icR-Gg-aVo"/>
+                            <constraint firstItem="Zza-p4-NR7" firstAttribute="leading" secondItem="Nxn-lI-nNl" secondAttribute="trailing" constant="82" id="jJR-y5-YD8"/>
                             <constraint firstItem="LPU-vK-iyl" firstAttribute="top" secondItem="7XL-M2-Gar" secondAttribute="bottom" constant="88" id="obj-bN-X32">
                                 <variation key="heightClass=regular-widthClass=compact" constant="98"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="7XL-M2-Gar" secondAttribute="centerX" id="phD-sj-FY5"/>
+                            <constraint firstItem="Zbl-ul-QDs" firstAttribute="leading" secondItem="Nxn-lI-nNl" secondAttribute="trailing" constant="-100" id="sot-n2-weR"/>
                             <constraint firstItem="i7n-lH-8ig" firstAttribute="leading" secondItem="Zbl-ul-QDs" secondAttribute="trailing" constant="82" id="ugH-gh-iLO"/>
                         </constraints>
                         <variation key="default">
@@ -171,14 +193,20 @@
                                 <exclude reference="Zbl-ul-QDs"/>
                                 <exclude reference="i7n-lH-8ig"/>
                                 <exclude reference="7XL-M2-Gar"/>
+                                <exclude reference="Nxn-lI-nNl"/>
+                                <exclude reference="Zza-p4-NR7"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="obj-bN-X32"/>
-                                <exclude reference="phD-sj-FY5"/>
                                 <exclude reference="fuE-0P-2Il"/>
                                 <exclude reference="icR-Gg-aVo"/>
+                                <exclude reference="sot-n2-weR"/>
                                 <exclude reference="RHF-1d-2cp"/>
                                 <exclude reference="ugH-gh-iLO"/>
+                                <exclude reference="bVs-wB-POy"/>
+                                <exclude reference="fKl-Ko-NEr"/>
+                                <exclude reference="jJR-y5-YD8"/>
+                                <exclude reference="phD-sj-FY5"/>
+                                <exclude reference="obj-bN-X32"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -186,14 +214,20 @@
                                 <include reference="Zbl-ul-QDs"/>
                                 <include reference="i7n-lH-8ig"/>
                                 <include reference="7XL-M2-Gar"/>
+                                <include reference="Nxn-lI-nNl"/>
+                                <include reference="Zza-p4-NR7"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="obj-bN-X32"/>
-                                <include reference="phD-sj-FY5"/>
                                 <include reference="fuE-0P-2Il"/>
                                 <include reference="icR-Gg-aVo"/>
+                                <include reference="sot-n2-weR"/>
                                 <include reference="RHF-1d-2cp"/>
                                 <include reference="ugH-gh-iLO"/>
+                                <include reference="bVs-wB-POy"/>
+                                <include reference="fKl-Ko-NEr"/>
+                                <include reference="jJR-y5-YD8"/>
+                                <include reference="phD-sj-FY5"/>
+                                <include reference="obj-bN-X32"/>
                             </mask>
                         </variation>
                     </view>
@@ -205,6 +239,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chipmunk" width="100" height="100"/>
+        <image name="darthVader" width="100" height="100"/>
         <image name="microphone" width="87" height="87"/>
         <image name="rabbit" width="100" height="100"/>
         <image name="snail" width="100" height="100"/>

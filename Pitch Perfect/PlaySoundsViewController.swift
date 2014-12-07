@@ -12,15 +12,18 @@ import AVFoundation
 class PlaySoundsViewController: UIViewController {
 
     var player = AVAudioPlayer()
+    var engine:AVAudioEngine!
+    var audioFile:AVAudioFile!
     
-    var extra:NSURL!
+    var receivedAudio:RecordedAudio!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (extra != nil){
+        if (receivedAudio != nil){
             var error:NSError?
-            player = AVAudioPlayer(contentsOfURL: extra, error: nil)
+            player = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl, error: nil)
             player.enableRate = true
+            audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
         }
         else if var path = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
         {
@@ -33,6 +36,7 @@ class PlaySoundsViewController: UIViewController {
             println("filepath is empty")
         }
         // Do any additional setup after loading the view.
+        engine = AVAudioEngine()
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,5 +62,34 @@ class PlaySoundsViewController: UIViewController {
             player.currentTime = 0.0
         }
     }
+    
+    @IBAction func onChipmunkClick(sender: UIButton) {
+        playAudioWithVariablePitch(1000)
+    }
+    
+    @IBAction func onVaderClick(sender: AnyObject) {
+        playAudioWithVariablePitch(-1000)
+    }
+    func playAudioWithVariablePitch(pitch: Float){
+        player.stop()
+        engine.stop()
+        engine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        engine.attachNode(audioPlayerNode)
+        
+        var changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = pitch
+        engine.attachNode(changePitchEffect)
+        
+        engine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        engine.connect(changePitchEffect, to: engine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        engine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+    }
+    
     
 }
